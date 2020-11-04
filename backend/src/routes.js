@@ -48,8 +48,11 @@ routes.put('/book', async (request, response) => {
     return response.json(book);
 });
 
-routes.delete('/book/:id', (request, response) => {
+routes.delete('/book/:id', async (request, response) => {
     const id = request.params.id;
+    await connection('book')    
+        .where('id', id)
+        .delete();
     return response.json();
 });
 
