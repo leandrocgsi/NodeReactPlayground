@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { FiPower, FiTrash2, FiEdit } from 'react-icons/fi';
 import './styles.css'
 
-export default function Book() {
+export default function Books() {
 
     return (
         <div className="book-container">
