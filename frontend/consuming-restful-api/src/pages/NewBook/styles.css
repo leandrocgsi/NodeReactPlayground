@@ -56,7 +56,6 @@
     max-width: 450px;
   }
   
-  .new-book-container .content form input,
-  .new-book-container .content form textarea {
+  .new-book-container .content form input {
     margin-top: 8px;
   }
