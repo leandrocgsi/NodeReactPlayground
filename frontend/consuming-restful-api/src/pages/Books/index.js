@@ -18,12 +18,12 @@ export default function Books() {
     const history = useHistory();
 
     useEffect(() => {
-        api.get('api/Book/v1', {
+        api.get('api/Book/v1/desc/5/1', {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
         }).then(response =>{
-            setBooks(response.data)
+            setBooks(response.data.list)
         })
     }, [accessToken]);
 
