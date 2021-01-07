@@ -20,6 +20,7 @@ services:
       context: ./backend
       dockerfile: ./Dockerfile
     image: leandrocgsi/node-react-backend
+    command: npx knex migrate:latest
     ports:
       - 5000:5000
     depends_on:
