@@ -35,7 +35,7 @@ const [id, setId] = useState(null);
 
     async function loadBook() {
         try {
-            const response = await api.get(`api/book/v1/${bookId}`, authorization);
+            const response = await api.get(`book/${bookId}`, authorization);
 
             let adjustedDate = response.data.launchDate.split("T", 10)[0]
 
@@ -62,10 +62,10 @@ const [id, setId] = useState(null);
 
         try {
             if(bookId === '0') {
-                await api.post('api/book/v1', data, authorization);
+                await api.post('book', data, authorization);
             } else {
                 data.id = id; 
-                await api.put('api/book/v1', data, authorization);
+                await api.put('book', data, authorization);
             }
             history.push('/books')
         } catch (err) {

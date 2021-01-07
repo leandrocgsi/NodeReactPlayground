@@ -12,24 +12,21 @@ export default function Books() {
 
     const [books, setBooks] = useState([]);    
     const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
     
-    const username = localStorage.getItem('username');
-    const accessToken = localStorage.getItem('accessToken');
-    
-    const authorization = {
-        headers: {
-            Authorization: `Bearer ${accessToken}`
-        }
-    };
-
     useEffect(() => {
+        if (total > 0 && books.length === total) {
+            return;
+        }
         fetchMoreBooks();
-    },[]);
+        // eslint-disable-next-line
+    }, []);
 
     async function fetchMoreBooks() {
-        const response = await api.get(`api/Book/v1/asc/4/${page}`, authorization);
-        setBooks([ ...books, ...response.data.list]);
-        setPage(page + 1)
+        const response = await api.get(`book`);
+        setTotal(response.data.total);
+        setBooks([ ...books, ...response.data.books]);
+        setPage(page + 1);
     }
 
     const history = useHistory();
@@ -44,7 +41,7 @@ export default function Books() {
 
     async function deleteBook(id){
         try {
-            await api.delete(`api/Book/v1/${id}`, authorization)
+            await api.delete(`book/${id}`)
 
             setBooks(books.filter(book => book.id !== id))
         } catch (err) {
@@ -52,25 +49,14 @@ export default function Books() {
         }
     }
 
-    async function logout(){
-        try {
-            await api.get('api/auth/v1/revoke', authorization)
-
-            localStorage.clear();
-            history.push('/');
-        } catch (err) {
-            alert('Logout failed! Try again!'); 
-        }
-    }
-
     return (
         <div className="book-container" >
             <header>
                 <img src={logoImage} alt="Erudio" />
-                <span>Welcome, <strong>{username.toUpperCase()}</strong>!</span>
+                <span>Welcome, <strong>USERNAME</strong>!</span>
 
                 <Link className="button" to="book/new/0">Add New Book</Link>
-                <button onClick={logout} type="button">
+                <button type="button">
                     <FiPower size={18} color="#251FC5" />
                 </button>
             </header>

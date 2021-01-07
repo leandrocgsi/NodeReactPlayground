@@ -9,13 +9,18 @@ module.exports = {
         const [count] = await connection('book').count();
 
         const books = await connection('book')
-            .limit(5)
-            .offset((page - 1) * 5)
+            .limit(6)
+            .offset((page - 1) * 6)
             .select('*');
 
-        response.header('X-Total-Count', count['count(*)']);
+        const total = count['count(*)'];
+
+        const data = {
+            total,
+            books
+        }
         
-        return response.json(books);
+        return response.json(data);
     },
 
     async findById(request, response) {

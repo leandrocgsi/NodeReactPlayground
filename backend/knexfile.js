@@ -33,11 +33,12 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'mysql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      host : 'db',
+      database: 'docker_from_zero_to_mastery_node_react',
+      user:     'docker',
+      password: 'docker'
     },
     pool: {
       min: 2,
