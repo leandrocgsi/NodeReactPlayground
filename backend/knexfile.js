@@ -3,12 +3,13 @@
 module.exports = {
 
   development: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
-      host : '127.0.0.1',
-      user : 'root',
-      password : 'admin123',
-      database : 'react_node_playground'
+      host: 'db' || 'localhost',
+      port: 3306,
+      database: 'docker_from_zero_to_mastery_node_react',
+      user:     'docker',
+      password: 'docker'
     },
     migrations: {
       directory: './src/database/migrations'
@@ -33,9 +34,10 @@ module.exports = {
   },
 
   production: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
-      host : 'db',
+      host: 'db',
+      port: 3306,
       database: 'docker_from_zero_to_mastery_node_react',
       user:     'docker',
       password: 'docker'
@@ -45,8 +47,10 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      tableName: 'knex_migrations',
+      directory: './src/database/migrations'
+    },
+    useNullAsDefault: true,
   }
 
 };
