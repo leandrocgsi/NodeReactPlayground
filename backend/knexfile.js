@@ -34,23 +34,19 @@ module.exports = {
   },
 
   production: {
-    client: 'mysql2',
+    client: 'postgresql',
     connection: {
-      host: 'db',
-      port: 3306,
-      database: 'docker_from_zero_to_mastery_node_react',
-      user:     'docker',
-      password: 'docker'
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './src/database/migrations'
-    },
-    useNullAsDefault: true,
+      tableName: 'knex_migrations'
+    }
   }
 
 };
