@@ -27,6 +27,9 @@ services:
       - db
 #    command: sh -c 'bin/wait-for db:3306 -- npx knex migrate:latest
 #    command: ["./wait-for-it.sh", "db:3306", "--", "npx knex migrate:latest"]
+    command: ./wait-for-it.sh db:3306 -- npx knex migrate:latest
+#    entrypoint: ./wait-for-it.sh mydb:3306 -- ./yourEntryPoint.sh
+#    entrypoint: ./wait-for-it.sh db:3306 -- npx knex migrate:latest
     restart: always
     networks:
       - udemy-network
