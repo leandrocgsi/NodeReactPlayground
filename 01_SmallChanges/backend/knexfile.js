@@ -5,11 +5,11 @@ module.exports = {
   development: {
     client: 'mysql2',
     connection: {
-      host: 'db',
+      host: 'localhost',
       port: 3306,
       database: 'docker_from_zero_to_mastery_node_react',
-      user:     'docker',
-      password: 'docker'
+      user:     'root',
+      password: 'admin123'
     },
     migrations: {
       directory: './src/database/migrations'

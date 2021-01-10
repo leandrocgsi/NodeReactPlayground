@@ -17,14 +17,6 @@ const [id, setId] = useState(null);
 
     const { bookId } = useParams();
 
-    const accessToken = localStorage.getItem('accessToken');
-    
-    const authorization = {
-        headers: {
-            Authorization: `Bearer ${accessToken}`
-        }
-    };
-
     const history = useHistory();
 
     
@@ -35,7 +27,7 @@ const [id, setId] = useState(null);
 
     async function loadBook() {
         try {
-            const response = await api.get(`book/${bookId}`, authorization);
+            const response = await api.get(`book/${bookId}`);
 
             let adjustedDate = response.data.launchDate.split("T", 10)[0]
 
@@ -62,10 +54,10 @@ const [id, setId] = useState(null);
 
         try {
             if(bookId === '0') {
-                await api.post('book', data, authorization);
+                await api.post('book', data);
             } else {
                 data.id = id; 
-                await api.put('book', data, authorization);
+                await api.put('book', data);
             }
             history.push('/books')
         } catch (err) {
@@ -79,7 +71,7 @@ const [id, setId] = useState(null);
                 <section className="form">
                     <img src={logoImage} alt="Erudio"/>
                     <h1>{bookId === '0' ? 'Add New' : 'Update'} Book</h1>
-                    <p>Enter the book information and click on {bookId === '0' ? "'Add'" : "'Update'!  ####"} {id}</p>
+                    <p>Enter the book information and click on {bookId === '0' ? "'Add'" : "'Update'!"} {id}</p>
                     <Link className="back-link" to="/books">
                         <FiArrowLeft size={16} color="#251FC5" />
                         Back to Books
