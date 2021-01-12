@@ -9,8 +9,8 @@ module.exports = {
         const [count] = await connection('book').count();
 
         const books = await connection('book')
-            .limit(6)
-            .offset((page - 1) * 6)
+            .limit(2)
+            .offset((page - 1) * 2)
             .select('*');
 
         const total = count['count(*)'];
