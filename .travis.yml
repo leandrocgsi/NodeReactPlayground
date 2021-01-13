@@ -5,9 +5,10 @@ node_js:
 before_install:
   - sudo apt-get update
   - cd 02_DockerizedProject/frontend/
-  - echo "Let's install Node Modules!!!"
+  - echo "Let's install Node Modules in Front-end!!!"
   - npm install
   - cd ../backend/
+  - echo "Let's install Node Modules in Back-end!!!"
   - npm install
   - cd ../
   - echo "We are in root dir"
@@ -19,10 +20,10 @@ deploy:
   provider: script
   script:
     docker tag node-react-backend:latest $DOCKER_USERNAME/node-react-backend:$TRAVIS_JOB_ID;
-    docker tag node-react-frontend:latest $DOCKER_USERNAME/node-react-frontend:latest;
+    docker tag node-react-frontend:latest $DOCKER_USERNAME/node-react-frontend:$TRAVIS_JOB_ID;
     docker push $DOCKER_USERNAME/node-react-backend:$TRAVIS_JOB_ID;
-    docker push $DOCKER_USERNAME/node-react-frontend:latest;
+    docker push $DOCKER_USERNAME/node-react-frontend:$TRAVIS_JOB_ID;
   on:
-    brach: master
+    branch: master
 notifications:
   email: false
