@@ -7,10 +7,9 @@ before_install:
   - cd 02_DockerizedProject/frontend/
   - echo "Let's install Node Modules!!!"
   - npm install
-  - cd ..
-  - cd backend/
+  - cd ../backend/
   - npm install
-  - cd ../..
+  - cd ../
   - echo "We are in root dir"
 script:
   - docker-compose build
